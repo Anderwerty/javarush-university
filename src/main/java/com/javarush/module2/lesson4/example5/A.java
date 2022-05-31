@@ -8,6 +8,9 @@ public interface A {
     }
 
     public static void main(String[] args) {
-        A.method();
+        Integer x = 10;
+        System.out.println(x instanceof Integer);
     }
+
+
 }
