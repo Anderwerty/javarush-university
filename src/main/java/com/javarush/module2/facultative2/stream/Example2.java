@@ -129,16 +129,19 @@ class LinkedListContainer<E> implements Iterable<E> {
 
 class SumCollector implements Collector<Integer, LinkedListContainer<Integer>, Integer> {
 
+    //how create container
     @Override
     public Supplier<LinkedListContainer<Integer>> supplier() {
         return LinkedListContainer::new;
     }
 
+    // add item into container
     @Override
     public BiConsumer<LinkedListContainer<Integer>, Integer> accumulator() {
         return LinkedListContainer::add;
     }
 
+    // merge 2 containers
     @Override
     public BinaryOperator<LinkedListContainer<Integer>> combiner() {
         return (items1, items2) -> {
@@ -147,6 +150,7 @@ class SumCollector implements Collector<Integer, LinkedListContainer<Integer>, I
         };
     }
 
+    //calculate sum
     @Override
     public Function<LinkedListContainer<Integer>, Integer> finisher() {
         return (items) -> {
@@ -159,6 +163,7 @@ class SumCollector implements Collector<Integer, LinkedListContainer<Integer>, I
         };
     }
 
+    //don't take about order
     @Override
     public Set<Characteristics> characteristics() {
         return Set.of(UNORDERED);
