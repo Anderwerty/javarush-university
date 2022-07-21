@@ -107,6 +107,7 @@ class LinkedListContainer<E> implements Iterable<E> {
         return currentNode.value;
     }
 
+    // look at collection addAll
     public void merge(LinkedListContainer<E> that) {
         if (that.size == 0) {
             return;
@@ -121,6 +122,7 @@ class LinkedListContainer<E> implements Iterable<E> {
         }
 
         currentNode.nextNode = thatStartNode;
+        that.head.nextNode = null;
 
         this.size += that.size;
     }
@@ -138,10 +140,12 @@ class SumCollector implements Collector<Integer, LinkedListContainer<Integer>, I
     // add item into container
     @Override
     public BiConsumer<LinkedListContainer<Integer>, Integer> accumulator() {
-        return LinkedListContainer::add;
+//        return LinkedListContainer::add;
+        return (list, item )-> list.add(item);
     }
 
     // merge 2 containers
+    // y(x) = x*x
     @Override
     public BinaryOperator<LinkedListContainer<Integer>> combiner() {
         return (items1, items2) -> {
