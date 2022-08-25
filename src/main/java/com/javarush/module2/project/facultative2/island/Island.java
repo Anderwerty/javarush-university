@@ -1,18 +1,27 @@
 package com.javarush.module2.project.facultative2.island;
 
+import com.javarush.module2.project.facultative2.Coordinates;
+import com.javarush.module2.project.facultative2.animals.Animal;
+
 public class Island {
 
-    Location[][] locations = new Location[100][20];
+    private final Location[][] locations; // Map<Coordinates, Location>
 
-    public void initialize(){
+    public Island(int a, int b) {
+        this.locations = new Location[a][b];
+    }
+
+    public void initialize() {
         for (int i = 0; i < locations.length; i++) {
             for (int j = 0; j < locations[i].length; j++) {
-                locations[i][j] = new Location();
+                Location location = new Location();
+
+                locations[i][j] = location;
             }
         }
     }
 
-    public void print(){
+    public void print() {
         for (int i = 0; i < locations.length; i++) {
             for (int j = 0; j < locations[i].length; j++) {
                 System.out.print(locations[i][j]);
@@ -21,4 +30,12 @@ public class Island {
         }
     }
 
+    public void moveToOtherLocation(Coordinates coordinates, Animal animal) {
+        Location location = getLocationByCoordinates(coordinates);
+        location.comeToLocation(animal);
+    }
+
+    private Location getLocationByCoordinates(Coordinates coordinates) {
+        return null;
+    }
 }

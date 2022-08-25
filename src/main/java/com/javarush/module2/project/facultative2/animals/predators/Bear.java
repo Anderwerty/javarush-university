@@ -1,6 +1,9 @@
 package com.javarush.module2.project.facultative2.animals.predators;
 
-import Module2.IslandModel.animals.herbivores.Herbivore;
+
+import com.javarush.module2.project.facultative2.Coordinates;
+import com.javarush.module2.project.facultative2.animals.herbivores.Herbivore;
+import com.javarush.module2.project.facultative2.island.Location;
 
 import java.util.List;
 
@@ -21,14 +24,24 @@ public class Bear extends Predator {
 
 
     @Override
-    public void breed() {
+    public void eat(Location location) {
 
     }
 
     @Override
-    public void chooseDirection() {
+    protected Coordinates findNextCoordinates(Coordinates currentCoordinates, int sizeA, int sizeB) {
+        return null;
+    }
+
+    @Override
+    public void breed() {
 
     }
+
+//    @Override
+//    public void chooseDirection() {
+//
+//    }
 
     @Override
     public void eat(List<Herbivore> herbivores) {

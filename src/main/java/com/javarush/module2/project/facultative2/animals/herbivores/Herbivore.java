@@ -1,8 +1,7 @@
 package com.javarush.module2.project.facultative2.animals.herbivores;
 
-
-import Module2.IslandModel.animals.Animal;
-import Module2.IslandModel.plants.Plant;
+import com.javarush.module2.project.facultative2.animals.Animal;
+import com.javarush.module2.project.facultative2.plants.Plant;
 
 public abstract class Herbivore extends Animal {
 
