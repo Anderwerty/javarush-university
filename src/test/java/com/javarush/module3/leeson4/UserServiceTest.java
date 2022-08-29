@@ -1,8 +1,9 @@
 package com.javarush.module3.leeson4;
 
+import com.javarush.module3.leeson4.validator.CredentialValidator;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -33,6 +34,7 @@ class UserServiceTest {
 
 
     @Test
+    @Disabled
     void registerShouldThrowExceptionIfConnectionToDatabaseLost() {
         Mockito.doNothing().when(credentialValidator).validate("password", "login");
 

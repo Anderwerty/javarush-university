@@ -1,12 +1,21 @@
 package com.javarush.module3.leeson4;
 
+import com.javarush.module3.leeson4.validator.CredentialValidator;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Example2 {
     public static void main(String[] args) {
-        UserRepository userRepository = (password, login) -> new User(1, password, login);
+        UserRepository userRepository = null;
         PasswordEncoder passwordEncoder = new StupidPasswordEncoder();
-        CredentialValidator credentialValidator = (password, login)-> {};
+        CredentialValidator credentialValidator = null;
+
         UserService userService =
                 new UserService(userRepository, passwordEncoder, credentialValidator);
 
@@ -23,29 +32,23 @@ public class Example2 {
     }
 }
 
+@EqualsAndHashCode
+@ToString
+@AllArgsConstructor
+@Getter
 class User {
     private final Integer id;
     private final String login;
     private final String password;
-
-    User(Integer id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }
 
 // SOLID, S
 interface UserRepository {
     User save(String password, String login) throws DataBaseConnectionException;
+
+    Optional<User> findById(Integer id);
+
+    List<User> findAll();
 }
 
 class DataBaseConnectionException extends RuntimeException {
@@ -55,13 +58,8 @@ class DataBaseConnectionException extends RuntimeException {
 interface PasswordEncoder {
 
     String encode(String rawPassword);
-    String encode(int rawPassword);
 
     boolean isMatched(String rawPassword, String encodePassword);
-}
-
-interface CredentialValidator {
-    void validate(String password, String login);
 }
 
 
@@ -71,11 +69,6 @@ class StupidPasswordEncoder implements PasswordEncoder {
     public String encode(String rawPassword) {
         System.out.println("stupid password encoder");
         return rawPassword;
-    }
-
-    @Override
-    public String encode(int rawPassword) {
-        return null;
     }
 
     @Override
