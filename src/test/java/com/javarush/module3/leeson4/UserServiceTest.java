@@ -1,9 +1,17 @@
 package com.javarush.module3.leeson4;
 
+import com.javarush.module3.leeson4.entity.User;
+import com.javarush.module3.leeson4.exception.DataBaseConnectionException;
+import com.javarush.module3.leeson4.repository.UserRepository;
+import com.javarush.module3.leeson4.service.PasswordEncoder;
+import com.javarush.module3.leeson4.service.SavingSystem;
+import com.javarush.module3.leeson4.service.UserService;
 import com.javarush.module3.leeson4.validator.CredentialValidator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -28,6 +36,12 @@ class UserServiceTest {
 
     @Spy
     private PasswordEncoder passwordEncoder = new StupidPasswordEncoder();
+
+    @Mock
+    private SavingSystem savingSystem;
+
+    @Captor
+    public ArgumentCaptor<User> captor;
 
     @InjectMocks
     private UserService userService;
@@ -60,8 +74,17 @@ class UserServiceTest {
         System.out.println(passwordEncoder.encode("password"));
         System.out.println(passwordEncoder.encode("password"));
         System.out.println(passwordEncoder.encode("password"));
+    }
 
+    @Test
+    void method() {
+        String login = "login";
+        String password = "password";
+        userService.method(login, password);
 
+        Mockito.verify(savingSystem).save(captor.capture());
+        User value = captor.getValue();
+        System.out.println(value);
     }
 
 }

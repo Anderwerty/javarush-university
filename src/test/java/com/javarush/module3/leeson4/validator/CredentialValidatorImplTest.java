@@ -1,5 +1,6 @@
 package com.javarush.module3.leeson4.validator;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +16,7 @@ class CredentialValidatorImplTest {
                 () -> objectUnderTest.validate("password", null));
 
         assertEquals("Login is null", expectedException.getMessage());
+        Assertions.assertThat(expectedException.getMessage()).isEqualTo("Login is null");
     }
 
     @Test
