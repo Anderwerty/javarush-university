@@ -1,8 +1,8 @@
-package com.javarush.module3.leeson4.service;
+package com.javarush.module3.lesson4.service;
 
-import com.javarush.module3.leeson4.entity.User;
-import com.javarush.module3.leeson4.repository.UserRepository;
-import com.javarush.module3.leeson4.validator.CredentialValidator;
+import com.javarush.module3.lesson4.entity.User;
+import com.javarush.module3.lesson4.repository.UserRepository;
+import com.javarush.module3.lesson4.validator.CredentialValidator;
 
 public class UserService {
     private final UserRepository userRepository;

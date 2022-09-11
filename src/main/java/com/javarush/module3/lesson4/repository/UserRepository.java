@@ -1,7 +1,7 @@
-package com.javarush.module3.leeson4.repository;
+package com.javarush.module3.lesson4.repository;
 
-import com.javarush.module3.leeson4.entity.User;
-import com.javarush.module3.leeson4.exception.DataBaseConnectionException;
+import com.javarush.module3.lesson4.entity.User;
+import com.javarush.module3.lesson4.exception.DataBaseConnectionException;
 
 import java.util.List;
 import java.util.Optional;

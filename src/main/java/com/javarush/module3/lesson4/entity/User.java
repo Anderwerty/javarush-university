@@ -1,4 +1,4 @@
-package com.javarush.module3.leeson4.entity;
+package com.javarush.module3.lesson4.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

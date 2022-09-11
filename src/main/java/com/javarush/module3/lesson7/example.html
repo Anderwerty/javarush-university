@@ -1,0 +1,135 @@
+<html>
+<head>
+
+</head>
+
+<script type="text/javascript">
+    var PI = 3.14;
+    var MIN_NUM = 2;
+    var MAX_NUM = 10;
+
+    function calculateAre(radius) {
+        return PI * radius * radius;
+    }
+
+    function calculatePerimeter(radius) {
+        return 2 * PI * radius;
+    }
+
+    function initDisplay() {
+        document.getElementById("how_much").style.display = 'block';
+        document.getElementById("value").style.display = 'none';
+        document.getElementById("result").style.display = 'none';
+    }
+
+    function start() {
+        document.getElementById("min").innerHTML = MIN_NUM;
+        document.getElementById("max").innerHTML = MAX_NUM;
+        initDisplay();
+    }
+
+    window.onload = function () {
+        start()
+    }
+
+    let startsNumber;
+
+    function generate() {
+        let err = document.getElementById("errorText")
+        err.innerHTML = ""
+
+        startsNumber = new Number(document.getElementById("number").value)
+
+
+        if ((isNaN(startsNumber) === true || startsNumber > document.getElementById("max").innerText || startsNumber < document.getElementById("min").innerText)) {
+            err.innerHTML = "input value is not correct"
+            return;
+        }
+
+        let inputs = document.getElementById("inputs");
+        inputs.innerHTML = ""
+        for (let i = 0; i < startsNumber; i++) {
+            let input = document.createElement('input');
+            let nextLine = document.createElement('br');
+            inputs.setAttribute('id', 'stats' + i);
+            inputs.setAttribute('type', 'text')
+            inputs.append((i + 1) + ";");
+            inputs.append(input);
+            inputs.append(nextLine);
+        }
+        how_much.style.display = 'none';
+        values.style.display = 'block';
+    }
+
+    function action(type) {
+        let err = document.getElementById('errorText');
+        err.innerHTML = "";
+        let arr = new Array(startsNumber);
+        for (let i = 0; i < startsNumber; i++) {
+            let num = new Number(document.getElementById('stats' + i).value.trim());
+            if (isNaN(num) === true) {
+                err.innerHTML = 'not number';
+                return ''
+            }
+
+            arr[i] = num;
+        }
+
+        let res = 0;
+
+        if (type === 'sum') {
+            for (let i = 0; i < arr.length; i++) {
+                res += arr[i];
+            }
+        }
+
+        if (type === 'avg') {
+
+        }
+
+        if (type === 'min') {
+            res = parseInt(arr[0]);
+        }
+        document.getElementById('result_line').innerHTML = res;
+
+        values.style.display ='none';
+        result.style.display ='block';
+
+    }
+
+
+</script>
+
+<body>
+<p id="errorText" style="color:#ff1e00;"></p>
+
+<div id='how_much'>
+
+    stats number (between <span id="min"></span> and <span id="max"></span>);
+    <label for="number"></label><input id="number" type="text"/>
+    <br/>
+    <a href="#" onclick="generate()">generate inputs</a>
+</div>
+
+<div id="values">
+    <div id="inputs">
+    </div>
+    <br/>
+
+    <a href="#" onclick="action('sum')">sum</a>
+    <a href="#" onclick="action('min')">min</a>
+    <a href="#" onclick="action('max')">max</a>
+    <a href="#" onclick="action('avg')">avg</a>
+    <br/>
+    <a href="#" onclick="initDisplay()">Back</a>
+</div>
+
+<div id = "result">
+    <p id ="result_line"></p>
+    <br/>
+    <a href="#" onclick="initDisplay()"> next trial</a>
+</div>
+</body>
+
+
+</html>

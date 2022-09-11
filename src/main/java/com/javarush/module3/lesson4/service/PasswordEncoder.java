@@ -1,4 +1,4 @@
-package com.javarush.module3.leeson4.service;
+package com.javarush.module3.lesson4.service;
 
 public interface PasswordEncoder {
 

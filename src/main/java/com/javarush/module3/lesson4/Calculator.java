@@ -1,14 +1,13 @@
-package com.javarush.module3.leeson4;
+package com.javarush.module3.lesson4;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
-import static com.javarush.module3.leeson4.Operation.ADD;
-import static com.javarush.module3.leeson4.Operation.DIV;
-import static com.javarush.module3.leeson4.Operation.MINUS;
-import static com.javarush.module3.leeson4.Operation.MULT;
+import static com.javarush.module3.lesson4.Operation.ADD;
+import static com.javarush.module3.lesson4.Operation.DIV;
+import static com.javarush.module3.lesson4.Operation.MINUS;
+import static com.javarush.module3.lesson4.Operation.MULT;
 
 public class Calculator {
     private static final Map<Operation, BiFunction<Integer, Integer, Result>>

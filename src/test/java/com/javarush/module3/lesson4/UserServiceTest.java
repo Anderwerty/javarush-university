@@ -1,12 +1,12 @@
-package com.javarush.module3.leeson4;
+package com.javarush.module3.lesson4;
 
-import com.javarush.module3.leeson4.entity.User;
-import com.javarush.module3.leeson4.exception.DataBaseConnectionException;
-import com.javarush.module3.leeson4.repository.UserRepository;
-import com.javarush.module3.leeson4.service.PasswordEncoder;
-import com.javarush.module3.leeson4.service.SavingSystem;
-import com.javarush.module3.leeson4.service.UserService;
-import com.javarush.module3.leeson4.validator.CredentialValidator;
+import com.javarush.module3.lesson4.entity.User;
+import com.javarush.module3.lesson4.exception.DataBaseConnectionException;
+import com.javarush.module3.lesson4.repository.UserRepository;
+import com.javarush.module3.lesson4.service.PasswordEncoder;
+import com.javarush.module3.lesson4.service.SavingSystem;
+import com.javarush.module3.lesson4.service.UserService;
+import com.javarush.module3.lesson4.validator.CredentialValidator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +17,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -85,6 +87,41 @@ class UserServiceTest {
         Mockito.verify(savingSystem).save(captor.capture());
         User value = captor.getValue();
         System.out.println(value);
+    }
+
+}
+
+class Employee{
+
+}
+interface EmployeeRepository {
+    List<Employee> findAll(Connection connection);
+}
+
+class SQLUserRepository implements  EmployeeRepository{
+
+    @Override
+    public List<Employee> findAll(Connection connection) {
+        // classic implementation
+        return null;
+    }
+}
+
+class EmployeeRepositoryWithCache implements  EmployeeRepository{
+    private final EmployeeRepository employeeRepository;
+    private List<Employee> cache = null;
+
+    EmployeeRepositoryWithCache(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
+    @Override
+    public synchronized List<Employee> findAll(Connection connection){
+        if(cache == null){
+            cache = new ArrayList<>();
+            cache.addAll(employeeRepository.findAll(connection));
+        }
+        return cache;
     }
 
 }

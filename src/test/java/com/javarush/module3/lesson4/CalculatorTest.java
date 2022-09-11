@@ -1,4 +1,4 @@
-package com.javarush.module3.leeson4;
+package com.javarush.module3.lesson4;
 
 
 import org.junit.jupiter.api.DisplayName;

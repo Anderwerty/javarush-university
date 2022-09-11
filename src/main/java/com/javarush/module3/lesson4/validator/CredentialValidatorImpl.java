@@ -1,4 +1,4 @@
-package com.javarush.module3.leeson4.validator;
+package com.javarush.module3.lesson4.validator;
 
 public class CredentialValidatorImpl implements CredentialValidator {
     //

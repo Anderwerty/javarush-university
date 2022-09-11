@@ -1,9 +1,9 @@
-package com.javarush.module3.leeson4;
+package com.javarush.module3.lesson4;
 
-import com.javarush.module3.leeson4.repository.UserRepository;
-import com.javarush.module3.leeson4.service.PasswordEncoder;
-import com.javarush.module3.leeson4.service.UserService;
-import com.javarush.module3.leeson4.validator.CredentialValidator;
+import com.javarush.module3.lesson4.repository.UserRepository;
+import com.javarush.module3.lesson4.service.PasswordEncoder;
+import com.javarush.module3.lesson4.service.UserService;
+import com.javarush.module3.lesson4.validator.CredentialValidator;
 
 import java.util.Objects;
 

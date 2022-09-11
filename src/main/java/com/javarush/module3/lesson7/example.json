@@ -1,0 +1,12 @@
+{
+  "name" : "Alex",
+  "addresses": {
+    "address1": {
+      "city": "Kiyv",
+      "street": "Stepan Bandera 54/3",
+      "number" : 1,
+      "isFree": true
+    }
+  }
+}
+
