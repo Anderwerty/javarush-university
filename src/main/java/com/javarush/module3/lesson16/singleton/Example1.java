@@ -13,7 +13,14 @@ final class Singleton {
 
     private static final Object LOCK = new Object(); // ? null
 
-    private static Singleton instance;
+    private static volatile Singleton instance = null;
+    private static volatile int value;
+
+    public static void method10() {
+        if (value == 100) {
+            value++;
+        }
+    }
 
     private String url;
 
@@ -28,6 +35,13 @@ final class Singleton {
                     instance = temp;
                 }
             }
+        }
+        return instance;
+    }
+
+    public static Singleton getInstance2() {
+        if (instance == null) {
+            instance = new Singleton();
         }
         return instance;
     }
@@ -48,7 +62,7 @@ final class Singleton {
 enum SingletonEnum {
     FIRST;
 
-    public void method(){
+    public void method() {
 
     }
 }
